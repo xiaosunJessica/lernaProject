@@ -36,6 +36,8 @@ const isError = (val: any) => val instanceof Error
 
 const isRegexp =(val: any) => val instanceof RegExp
 
+const isObject = (val: any) =>  Object.prototype.toString.call(val) === '[object Object]'
+
 
 
 const kindOf = (val: any) => {
@@ -85,7 +87,7 @@ const kindOf = (val: any) => {
     case 'Float64Array': return 'float64array';
   }
 
-  type = Object.prototype.toString.call(val);
+  type = toString.call(val);
   switch (type) {
     case '[object Object]': return 'object';
     // iterators
@@ -99,4 +101,23 @@ const kindOf = (val: any) => {
   return type.slice(8, -1).toLowerCase().replace(/\s/g, '');
 }
 
-export default kindOf
+const isPlainObject = (val: any) => {
+  if (!isObject(val)) return false
+
+  let ctor = val.constructor;
+  if (kindOf(ctor) === 'undefined') return true;
+
+  let proto = ctor.prototype;
+  if (!isObject(proto)) return false;
+
+  if (proto.hasOwnProperty('isPrototypeOf') === false) {
+    return false
+  }
+
+  return true
+}
+
+export {
+  kindOf,
+  isPlainObject
+}
