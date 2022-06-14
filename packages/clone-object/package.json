@@ -1,5 +1,5 @@
 {
-  "version": "0.1.3",
+  "version": "0.1.4",
   "name": "@syq-xiaokuaoai/clone-object",
   "license": "MIT",
   "main": "dist/index.js",
@@ -50,5 +50,6 @@
     "tsdx": "^0.14.1",
     "tslib": "^2.4.0",
     "typescript": "^4.7.3"
-  }
+  },
+  "gitHead": "153997b4f2fb3cb38f82e01f21c2f36329397710"
 }
