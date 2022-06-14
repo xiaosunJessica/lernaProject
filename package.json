@@ -1,6 +1,12 @@
 {
-  "name": "root",
-  "private": true,
+  "name": "@syq-xiaokuaoai/lernaproject",
+  "version": "0.1.0",
+  "scripts": {
+    "postinstall": "lerna bootstrap",
+    "start": "npm start",
+    "publish": "lerna publish"
+    
+  },
   "devDependencies": {
     "lerna": "^5.1.1"
   }

@@ -31,7 +31,7 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "clone-object",
+  "name": "@syq-xiaokuaoai/clone-object",
   "author": "sunyaqin",
   "module": "dist/clone-object.esm.js",
   "size-limit": [

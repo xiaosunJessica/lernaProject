@@ -1,23 +1,23 @@
 const ctorName = (val: any) => {
   return typeof val.constructor === 'function' ? val.constructor.name : null
 }
-const isGeneratorFn = (val: any) => {
+export const isGeneratorFn = (val: any) => {
   return ctorName(val) === 'GeneratorFunction'
 }
 
-const isArray = (val: any) => {
+export const isArray = (val: any) => {
   if (Array.isArray) return Array.isArray(val);
   return val instanceof Array;
 }
 
-const isBuffer = (val: any) => {
+export const isBuffer = (val: any) => {
   if (val.constructor && typeof val.constructor.isBuffer === 'function') {
     return val.constructor.isBuffer(val);
   }
   return false;
 }
 
-const isArguments = (val: any) => {
+export const isArguments = (val: any) => {
   try {
     if (typeof val.length === 'number' && typeof val.callee === 'function') {
       return true;
@@ -30,17 +30,21 @@ const isArguments = (val: any) => {
   return false;
 }
 
-const isDate = (val: any) => val instanceof Date
+export const isDate = (val: any) => val instanceof Date
 
-const isError = (val: any) => val instanceof Error
+export const isError = (val: any) => val instanceof Error
 
-const isRegexp =(val: any) => val instanceof RegExp
+export const isRegexp =(val: any) => val instanceof RegExp
 
-const isObject = (val: any) =>  Object.prototype.toString.call(val) === '[object Object]'
+export const isObject = (val: any) =>  Object.prototype.toString.call(val) === '[object Object]'
 
+export const isFunction = (val: any) => {
+  return (
+    val && {}.toString.call(val) === "[object Function]"
+  );
+}
 
-
-const typeOf = (val: any) => {
+export const typeOf = (val: any) => {
   if (val === void 0) return 'undefined';
   if (val === null) return 'null';
 
@@ -101,7 +105,7 @@ const typeOf = (val: any) => {
   return type.slice(8, -1).toLowerCase().replace(/\s/g, '');
 }
 
-const isPlainObject = (val: any) => {
+export const isPlainObject = (val: any) => {
   if (!isObject(val)) return false
 
   let ctor = val.constructor;
@@ -117,7 +121,4 @@ const isPlainObject = (val: any) => {
   return true
 }
 
-export {
-  typeOf,
-  isPlainObject
-}
+
