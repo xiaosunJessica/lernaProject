@@ -1,6 +1,6 @@
 {
   "name": "@syq-xiaokuaoai/lernaproject",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "scripts": {
     "postinstall": "lerna bootstrap",
     "start": "npm start",
