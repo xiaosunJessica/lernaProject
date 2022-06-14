@@ -1,5 +1,34 @@
+const valueOf: any = Symbol.prototype.valueOf
+
+const cloneBuffer = (val: any) => {
+  const len = val.length;
+  const buf = Buffer.allocUnsafe ? Buffer.allocUnsafe(len) : Buffer.from(len);
+  val.copy(buf);
+  return buf;
+}
+
+const cloneArrayBuffer = (val: any) => {
+  const res = new val.constructor(val.byteLength);
+  new Uint8Array(res).set(new Uint8Array(val));
+  return res;
+}
+
+const cloneSymbol = (val: any) => {
+  return valueOf ? Object(valueOf.call(val)) : {};
+}
+
+const cloneTypedArray = (val: any) => {
+  return new val.constructor(val.buffer, val.byteOffset, val.length);
+}
+
+const cloneRegExp = (val: any) => {
+  const flags = val.flags !== void 0 ? val.flags : (/\w+$/.exec(val) || void 0);
+  const re = new val.constructor(val.source, flags);
+  re.lastIndex = val.lastIndex;
+  return re;
+}
 const shallowClone = (val: any) => {
-  switch (Symbol.prototype.valueOf(val)) {
+  switch (valueOf(val)) {
     case 'array':
       return val.slice();
     case 'object':

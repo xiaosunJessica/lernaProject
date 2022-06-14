@@ -40,7 +40,7 @@ const isObject = (val: any) =>  Object.prototype.toString.call(val) === '[object
 
 
 
-const kindOf = (val: any) => {
+const typeOf = (val: any) => {
   if (val === void 0) return 'undefined';
   if (val === null) return 'null';
 
@@ -105,7 +105,7 @@ const isPlainObject = (val: any) => {
   if (!isObject(val)) return false
 
   let ctor = val.constructor;
-  if (kindOf(ctor) === 'undefined') return true;
+  if (typeOf(ctor) === 'undefined') return true;
 
   let proto = ctor.prototype;
   if (!isObject(proto)) return false;
@@ -118,6 +118,6 @@ const isPlainObject = (val: any) => {
 }
 
 export {
-  kindOf,
+  typeOf,
   isPlainObject
 }
